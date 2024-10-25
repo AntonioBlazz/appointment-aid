@@ -47,7 +47,7 @@ const Appointment = () => {
       let timeSlots = []
 
       while (currentDate < endTime) {
-        let formattedTime = currentDate.toLocaleDateString([], { hour: '2-digit', minute: '2-digit'})
+        let formattedTime = currentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'})
 
         // add slot to array
         timeSlots.push({
