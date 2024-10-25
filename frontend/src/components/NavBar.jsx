@@ -5,8 +5,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 const NavBar = () => {
 
  const navigate = useNavigate();
-
- const[showMenu, seetShowMenu] = useState(false)
+ const[showMenu, setShowMenu] = useState(false)
  const[token,setToken] = useState(true)
 
   return (
@@ -46,7 +45,6 @@ const NavBar = () => {
                 </div>
                 :<button onClick={()=>navigate('/login')} className='bg-primary text-white px-8 py-3 rounded-full font-light hidden md:block'>Create account</button>
             }
-            
         </div>
     </div>
   )
