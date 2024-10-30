@@ -26,10 +26,6 @@ const addDoctor = async (req,res) => {
             return res.json({success:false,message:"Please enter a strong password"})
         }
 
-        // hashing doctor password
-        const salt = await bcrypt.genSalt(10)
-        const hashedPassword = await bcrypt.hash(password, salt)
-
         // upload image to cloudinary
         const imageUpload = await cloudinary.uploader.upload(imageFile.path, {resource_type:"image"})
         const imageUrl = imageUpload.secure_url
