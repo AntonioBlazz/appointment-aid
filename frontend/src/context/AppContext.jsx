@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
-import { doctors } from "../assets/assets";
 import { toast } from "react-toastify";
 import axios from 'axios'
+import { doctors } from "../assets/assets";
 
 export const AppContext = createContext()
 
@@ -11,6 +11,7 @@ const currencySymbol = '$'
 const backendUrl ='http://localhost:4000'
 const [token,setToken] = useState(localStorage.getItem('token')?localStorage.getItem('token'):false)
 const [userData, setUserData] = useState(false)
+const [doctor,setDoctors] = useState([])
 
 const loadUserProfileData = async () => {
    try {
@@ -27,14 +28,29 @@ const loadUserProfileData = async () => {
    }
 }
 
+const getDoctorsData = async () => {
+   try {
+      const {data} = await axios.get(backendUrl + '/api/doctor/list')
+      if (data.success) {
+         setDoctors(data.doctors)
+      }
+   } catch (error) {
+      console.log(error)
+      toast.error(data.message)
+   }
+}
+
 const value = {
-   doctors,
+   doctors,getDoctorsData,
    currencySymbol,
    token,setToken,
    backendUrl,
    userData, setUserData,
    loadUserProfileData
 }
+   useEffect(()=>{
+      getDoctorsData()
+   },[])
 
    useEffect(()=>{
       if (token) {
