@@ -39,7 +39,7 @@ const getDoctorsData = async () => {
    } catch (error) {
       console.log(error)
       const message = error.response ? error.response.data.message : error.message;
-      toast.error(message)
+      toast.error(message);
    }
 }
 
