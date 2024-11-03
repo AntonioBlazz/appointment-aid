@@ -33,10 +33,13 @@ const getDoctorsData = async () => {
       const {data} = await axios.get(backendUrl + '/api/doctor/list')
       if (data.success) {
          setDoctors(data.doctors)
+      } else {
+         toast.error(data.message)
       }
    } catch (error) {
       console.log(error)
-      toast.error(data.message)
+      const message = error.response ? error.response.data.message : error.message;
+      toast.error(message)
    }
 }
 
