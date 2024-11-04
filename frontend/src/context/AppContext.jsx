@@ -42,6 +42,9 @@ const getDoctorsData = async () => {
       toast.error(message);
    }
 }
+useEffect(()=>{
+   getDoctorsData()
+},[])
 
 const value = {
    doctors,getDoctorsData,
@@ -51,9 +54,7 @@ const value = {
    userData, setUserData,
    loadUserProfileData
 }
-   useEffect(()=>{
-      getDoctorsData()
-   },[])
+ 
 
    useEffect(()=>{
       if (token) {
